@@ -1,0 +1,85 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.dashboard-container {
+    background-color: rgb(255, 255, 255);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+    border: 1px solid lightgray;
+    padding: 20px;
+    margin-left: 20px;
+    border-radius: 10px;
+    direction: rtl;
+}
+
+.sidebar h5 {
+    border-bottom: 1px solid lightgray;
+    /* padding-bottom: 15px; */
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+    background-color: #f1f1f1;
+}
+
+.sidebar a .fas {
+    margin-right: 10px;
+    color: darkgray;
+}
+
+.content {
+    border: 0.7px solid lightgray;
+    padding: 20px;
+    border-radius: 5px;
+    flex: 1;
+}
+
+#saveChangesBtn {
+    background-color: #01315e;
+    color: white;
+    border: none;
+}
+
+#saveChangesBtn:disabled {
+    background-color: #072b4d;
+    opacity: 0.6;
+}
+
+#saveChangesBtn {
+    color: white;
+    width: 100%;
+    font-size: 0.7rem;
+    margin-top: 4vh;
+    padding: 1vh;
+    border-radius: 0;
+}
+
+#saveChangesBtn:focus {
+    box-shadow: none;
+    outline: none;
+    box-shadow: none;
+    color: white;
+    -webkit-box-shadow: none;
+    -webkit-user-select: none;
+    transition: none;
+}
+
+.active {
+    background-color: #e0e2e4;
+}

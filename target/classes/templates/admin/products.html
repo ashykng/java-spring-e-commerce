@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>داشبورد | لیست محصولات</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" th:href="@{/assets/dist/css/adminlte.min.css}">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/assets/dist/css/bootstrap-rtl.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/dist/css/custom-style.css}">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <div class="sidebar">
+                <div>
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            <img th:src="@{/assets/images/admin.png}" class="img-circle elevation-2" alt="Admin Image">
+                        </div>
+                        <div class="info d-block text-light"> ادمین </div>
+                    </div>
+
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                            data-accordion="false">
+                            <li class="nav-item">
+                                <a th:href="@{/admin}" class="nav-link">
+                                    <i class="nav-icon fa fa-dashboard"></i>
+                                    <p> داشبورد </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a th:href="@{/admin/products}" class="nav-link active">
+                                    <i class="nav-icon fa fa-cubes"></i>
+                                    <p> محصولات </p>
+                                </a>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-child"></i>
+                                    <p> مدیریت فروشندگان <i class="right fa fa-angle-left"></i> </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a tH:href="@{/admin/sellers}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p> لیست فروشندگان</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a th:href="@{/admin/add-seller}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p> افزودن فروشنده</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a th:href="@{/admin/users}" class="nav-link">
+                                    <i class="nav-icon fa fa-users"></i>
+                                    <p> کاربران <i class="right fa"></i> </p>
+                                </a>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-list-alt"></i>
+                                    <p> مدیریت دسته بندی ها <i class="right fa fa-angle-left"></i> </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a th:href="@{/admin/categories}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p> لیست دسته بندی ها</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a th:href="@{/admin/add-category}" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p> افزودن دسته بندی</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="fixed-bottom mx-auto">
+                            <a th:href="@{/logout}"><button class="btn btn-warning btn-md"> <i class="fa fa-sign-out"
+                                        aria-hidden="true"></i> خروج</button></a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content">
+                <div class="alert alert-info col-6 mx-auto pt-2 text-center mt-3" role="alert"
+                    th:if="${message != null}">
+                    [[${message}]]
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">لیست محصولات </h3>
+                            </div>
+                            <div class="card-body">
+                                <table id="example2" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ردیف</th>
+                                            <th>عنوان محصول</th>
+                                            <th>تصویر</th>
+                                            <th>قیمت</th>
+                                            <th>موجودی</th>
+                                            <th>دسته بندی</th>
+                                            <th>عملیات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="product, index : ${products}">
+                                            <td th:text="${index.index + 1}"></td>
+                                            <td th:text="${product.name}"></td>
+                                            <td>
+                                                <img th:src="@{${product.imagePath}}" alt="" width="65px">
+                                            </td>
+                                            <td th:text="${product.price}"></td>
+                                            <td th:text="${product.stock}"></td>
+                                            <td th:text="${product.category.name}"></td>
+                                            <td>
+                                                <button class="btn btn-danger btn-sm"
+                                                    th:attr="onclick=|deleteProduct('${product.name}')|">حذف</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+    </div>
+
+    <script th:src="@{/assets/plugins/jquery/jquery.min.js}"></script>
+    <script th:src="@{/assets/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/assets/plugins/chartjs-old/Chart.min.js}"></script>
+    <script th:src="@{/assets/plugins/fastclick/fastclick.js}"></script>
+    <script th:src="@{/assets/dist/js/adminlte.min.js}"></script>
+    <script th:src="@{/assets/dist/js/demo.js}"></script>
+
+    <script>
+        function deleteProduct(productName) {
+            if (confirm('آیا مطمئن هستید که می‌خواهید این محصول را حذف کنید؟')) {
+                $.ajax({
+                    url: '/admin/products/' + productName,
+                    type: 'DELETE',
+                    success: function (result) {
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        location.reload();
+                    }
+                });
+            }
+        }
+    </script>
+
+</body>
+
+</html>

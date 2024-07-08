@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+    <title>Checkout</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/assets/css1/styles.css}" rel="stylesheet">
+    <link th:href="@{/assets/css1/animate.css}" rel="stylesheet">
+    <link th:href="@{/assets/css1/owl-carousel.css}" rel="stylesheet">
+    <link th:href="@{/assets/css1/lightbox.css}" rel="stylesheet">
+</head>
+<body>
+<div class="checkout-inner float-left w-100 mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="cart-block-left col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span>Your cart</span>
+                </h4>
+                <div class="list-group mb-3">
+                    <div class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Orders</h6>
+                        </div>
+                        <span class="text-muted" th:text="'$' + ${totalPrice}"></span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Shipment</h6>
+                        </div>
+                        <span class="text-muted">$3</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between">
+                        <strong>Total (USD)</strong>
+                        <strong th:text="'$' + ${totalPrice + 3}"></strong>
+                    </div>
+                    <a th:href="@{/dashboard/payment}"><button type="button" class="btn btn-primary btn-lg btn-primary" id="placeOrderBtn">Place an order</button></a>
+                </div>
+            </div>
+            <div class="cart-block-right col-md-8 order-md-1">
+                <h4 class="mb-3">Address</h4>
+                <form id="checkoutForm" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input type="text" class="form-control" id="fullName" th:value="${user.name}" required disabled>
+                        <div class="invalid-feedback">Your full name is required.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone">Phone <span class="required">*</span></label>
+                        <input type="number" maxlength="11" class="form-control" id="phone" th:value="${user.number}" required disabled>
+                        <div class="invalid-feedback">Your phone is required.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                        <input type="email" class="form-control" id="email" th:value="${user.email}" disabled>
+                        <div class="invalid-feedback">Please enter a valid email address for shipping updates.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address">Address<span class="required">*</span></label>
+                        <input type="text" class="form-control" id="address" th:value="${user.address}" required disabled>
+                        <div class="invalid-feedback">Please enter your shipping address.</div>
+                    </div>
+                    <hr class="mb-4">
+                    <div class="custom-control custom-checkbox" id="same-address-main">
+                        <input type="checkbox" class="custom-control-input" id="same-address">
+                        <label class="custom-control-label" for="same-address">Another address?!</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/assets/js1/jquery.min.js}"></script>
+<script th:src="@{/assets/js1/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js1/owl.carousel.min.js}"></script>
+<script th:src="@{/assets/js1/custom.js}"></script>
+<script th:src="@{/assets/js1/parallax.js}"></script>
+<script th:src="@{/assets/js1/jquery-ui.min.js}"></script>
+<script th:src="@{/assets/js1/ResizeSensor.min.js}"></script>
+<script th:src="@{/assets/js1/theia-sticky-sidebar.min.js}"></script>
+<script th:src="@{/assets/js1/jquery.countdown.min.js}"></script>
+<script th:src="@{/assets/js1/masonry.pkgd.min.js}"></script>
+<script th:src="@{/assets/js1/imagesloaded.pkgd.min.js}"></script>
+<script th:src="@{/assets/js1/jquery.zoom.min.js}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Enable/disable fields based on checkbox state
+        $('#same-address').change(function () {
+            if ($(this).is(':checked')) {
+                $('#phone, #address').prop('disabled', false);
+            } else {
+                $('#phone, #address').prop('disabled', true);
+            }
+        });
+
+        $('#placeOrderBtn').click(function () {
+            // Reset validation classes and messages
+            $('.is-invalid').removeClass('is-invalid');
+            $('.invalid-feedback').hide();
+
+            // Perform custom validation
+            var isValid = true;
+
+            // Check each required field
+            if ($('#fullName').val().trim() === '') {
+                $('#fullName').addClass('is-invalid');
+                $('#fullName').next('.invalid-feedback').show();
+                isValid = false;
+            }
+
+            if ($('#phone').val().trim() === '') {
+                $('#phone').addClass('is-invalid');
+                $('#phone').next('.invalid-feedback').show();
+                isValid = false;
+            }
+
+            if ($('#address').val().trim() === '') {
+                $('#address').addClass('is-invalid');
+                $('#address').next('.invalid-feedback').show();
+                isValid = false;
+            }
+
+            // If form is valid, proceed with submission
+            if (isValid) {
+                // Prepare data to send
+                var formData = {
+                    phone: $('#phone').val(),
+                    address: $('#address').val()
+                };
+
+                // Send data to the controller via AJAX
+                $.ajax({
+                    type: "POST",
+                    url: "/dashboard/checkout",
+                    contentType: "application/json",
+                    data: JSON.stringify(formData),
+                    success: function (response) {
+                        // Handle success response if needed
+                        console.log("Data sent successfully");
+                        // Optionally redirect user or show success message
+                    },
+                    error: function (error) {
+                        // Handle error response if needed
+                        console.error("Error sending data: ", error);
+                        // Optionally show error message to the user
+                    }
+                });
+            } else {
+                // Show alert or message indicating validation failed
+                alert('Please fill in all required fields.');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>داشبورد | افزودن فروشنده </title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/assets/dist/css/adminlte.min.css}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- bootstrap rtl -->
+  <link rel="stylesheet" th:href="@{/assets/dist/css/bootstrap-rtl.min.css}">
+  <!-- template rtl version -->
+  <link rel="stylesheet" th:href="@{/assets/dist/css/custom-style.css}">
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <!-- Site wrapper -->
+  <div class="wrapper" style="background-color: #f4f6f9;">
+
+    <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom navbar-dark bg-success">
+      <h3>داشبورد</h3>
+    </nav>
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div>
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img th:src="@{/assets/images/admin.png}" class="img-circle elevation-2" alt="Admin Image">
+            </div>
+            <div class="info d-block text-light">
+              ادمین
+            </div>
+          </div>
+
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+
+              <li class="nav-item">
+                <a th:href="@{/admin}" class="nav-link">
+                  <i class="nav-icon fa fa-dashboard"></i>
+                  <p>
+                    داشبورد
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a th:href="@{/admin/products}" class="nav-link">
+                  <i class="nav-icon fa fa-cubes"></i>
+                  <p>
+                    محصولات
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                  <i class="nav-icon fa fa-child"></i>
+                  <p>
+                    مدیریت فروشندگان
+                    <i class="right fa fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a th:href="@{/admin/sellers}" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p> لیست فروشندگان</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a th:href="@{/admin/add-seller}" class="nav-link active">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p> افزودن فروشنده</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <a th:href="@{/admin/users}" class="nav-link">
+                  <i class="nav-icon fa fa-users"></i>
+                  <p>
+                    کاربران
+                    <i class="right fa"></i>
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fa fa-list-alt"></i>
+                  <p>
+                    مدیریت دسته بندی ها
+                    <i class="right fa fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a th:href="@{/admin/categories}" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p> لیست دسته بندی ها</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a th:href="@{/admin/add-category}" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p> افزودن دسته بندی</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+            <div class="fixed-bottom mx-auto">
+              <a th:href="@{/logout}"><button class="btn btn-warning btn-md"> <i class="fa fa-sign-out"
+                    aria-hidden="true"></i> خروج</button></a>
+            </div>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper ">
+      <!-- Content Header (Page header) -->
+
+
+      <!-- Main content -->
+      <section class="content col-6 mx-auto border " style="border-radius: 3%; margin-top: 10%;">
+
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1> افزودن فروشنده</h1>
+              </div>
+            </div>
+          </div><!-- /.container-fluid -->
+        </section>
+
+        <form role="form" th:action="@{/admin/add-seller}" method="post" th:object="${user}">
+          <div class="card-body">
+            <div class="form-group col-6">
+              <label for="name">نام </label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="نام فروشنده را وارد کنید"
+                th:field="*{name}">
+            </div>
+            <div class="form-group col-8">
+              <label for="email">ایمیل </label>
+              <input type="email" class="form-control" id="email" placeholder="ایمیل فروشنده را وارد کنید"
+                th:field="*{email}">
+            </div>
+            <div class="form-group col-8">
+              <label for="password">رمز عبور پنل </label>
+              <input type="password" class="form-control" id="password" placeholder="رمز عبور فروشنده را وارد کنید"
+                th:field="*{password}">
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">افزودن</button>
+          </div>
+        </form>
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery -->
+  <script th:src="@{/assets/plugins/jquery/jquery.min.js}"></script>
+  <!-- Bootstrap 4 -->
+  <script th:src="@{/assets/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <!-- SlimScroll -->
+  <script th:src="@{/assets/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+  <!-- FastClick -->
+  <script th:src="@{/assets/plugins/fastclick/fastclick.js}"></script>
+  <!-- AdminLTE App -->
+  <script th:src="@{/assets/dist/js/adminlte.min.js}"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script th:src="@{/assets/dist/js/demo.js}"></script>
+</body>
+
+</html>

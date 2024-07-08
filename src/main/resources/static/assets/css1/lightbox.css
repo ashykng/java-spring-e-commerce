@@ -1,0 +1,150 @@
+@charset "UTF-8";
+/* --------------------------- TempalteTrip Lightbox Styles ----------------------------- */
+.lightboxOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: black;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  display: none;
+}
+
+.lightbox {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+  margin: 70px 0;
+  text-align: center;
+  line-height: 0;
+  font-weight: normal;
+}
+.lightbox .lb-outerContainer {
+  position: relative;
+  background-color: white;
+  *zoom: 1;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+}
+.lightbox .lb-outerContainer .lb-container {
+  padding: 4px;
+}
+.lightbox .lb-outerContainer .lb-container .lb-image {
+  display: block;
+  height: auto;
+  max-width: inherit;
+  border-radius: 3px;
+}
+.lightbox .lb-outerContainer .lb-container .lb-loader {
+  position: absolute;
+  top: 43%;
+  left: 0;
+  height: 25%;
+  width: 100%;
+  text-align: center;
+  line-height: 0;
+}
+.lightbox .lb-outerContainer .lb-container .lb-loader .lb-cancel {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+  background: url(../img/lightbox/loading.gif) no-repeat;
+}
+.lightbox .lb-outerContainer .lb-container .lb-nav {
+  position: absolute;
+  top: 45%;
+  left: 1%;
+  width: 98%;
+  z-index: 10;
+}
+.lightbox .lb-outerContainer .lb-container .lb-nav a {
+  outline: none;
+}
+.lightbox .lb-outerContainer .lb-container .lb-nav a.lb-prev, .lightbox .lb-outerContainer .lb-container .lb-nav a.lb-next {
+  height: 100%;
+  padding: 2px 0;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+.lightbox .lb-outerContainer .lb-container .lb-nav a.lb-prev:before, .lightbox .lb-outerContainer .lb-container .lb-nav a.lb-next:before {
+  font-family: "Material Icons";
+  font-size: 40px;
+  float: left;
+  width: 100%;
+  height: 100%;
+  color: #000;
+  font-weight: bold;
+  line-height: 40px;
+}
+.lightbox .lb-outerContainer .lb-container .lb-nav a.lb-prev {
+  float: left;
+}
+.lightbox .lb-outerContainer .lb-container .lb-nav a.lb-prev:before {
+  content: "\E314";
+}
+.lightbox .lb-outerContainer .lb-container .lb-nav a.lb-next {
+  float: right;
+}
+.lightbox .lb-outerContainer .lb-container .lb-nav a.lb-next:before {
+  content: "\E315";
+}
+.lightbox .lb-dataContainer {
+  margin: 0 auto;
+  background: white;
+  *zoom: 1;
+  width: 100%;
+}
+.lightbox .lb-dataContainer:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.lightbox .lb-dataContainer .lb-data {
+  padding: 0 4px;
+  color: #ccc;
+}
+.lightbox .lb-dataContainer .lb-data .lb-details {
+  width: 85%;
+  float: left;
+  text-align: left;
+  padding: 10px;
+  line-height: 1.1em;
+}
+.lightbox .lb-dataContainer .lb-data .lb-caption {
+  color: #222222;
+  float: left;
+  margin: 0 0 5px;
+  width: 100%;
+}
+.lightbox .lb-dataContainer .lb-data .lb-number {
+  display: block;
+  clear: left;
+  color: #222222;
+}
+.lightbox .lb-dataContainer .lb-data .lb-closeContainer {
+  float: right;
+  margin: 10px;
+}
+.lightbox .lb-dataContainer .lb-data .lb-closeContainer .lb-close {
+  float: left;
+  height: 30px;
+  padding: 14px 0;
+  width: 20px;
+  cursor: pointer;
+}
+.lightbox .lb-dataContainer .lb-data .lb-closeContainer .lb-close:before {
+  font-family: "Material Icons";
+  font-size: 24px;
+  float: left;
+  width: 100%;
+  height: 100%;
+  content: "\E5CD";
+  color: #222222;
+  font-weight: bold;
+}

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html  lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment | Shop</title>
+    <!-- custom css file link  -->
+    <link rel="stylesheet" th:href="@{/assets/css2/style.css}">
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card-container">
+
+        <div class="front">
+            <div class="image">
+                <img th:href="@{/assets/images/chip.png}">
+            </div>
+            <div class="card-number-box">################</div>
+            <div class="flexbox">
+                <div class="box">
+                    <span>CVV2</span>
+                    <div class="card-holder-name">***</div>
+                </div>
+                <div class="box">
+                    <span>Expire</span>
+                    <div class="expiration">
+                        <span class="exp-month">00</span>
+                        <span class="exp-year">00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form>
+        <div class="inputBox">
+            <span>Account Number</span>
+            <input type="text" maxlength="16" class="card-number-input" required>
+        </div>
+        <div class="inputBox">
+            <span>Password </span>
+            <input type="password" maxlength="6" class="card-holder-input" required>
+        </div>
+        <div class="flexbox">
+            <div class="inputBox">
+                <span>Month</span>
+                <input type="number" maxlength="2" class="month-input" max="12" required>
+            </div>
+            <div class="inputBox">
+                <span>Year</span>
+                <input type="number" maxlength="2" class="year-input" required>
+            </div>
+            <div class="inputBox">
+                <span>CVV2</span>
+                <input type="text" maxlength="4" class="cvv-input" required>
+            </div>
+        </div>
+        <a th:href="@{/dashboard/order-confirmation}"><input type="button" value="Pay" class="submit-btn"></a>
+        <a th:href="@{/dashboard/checkout}"><input type="button" value="Cancel" class="submit-btn"></a>
+    </form>
+
+</div>
+
+<script>
+    document.querySelector('.card-number-input').oninput = () =>{
+        document.querySelector('.card-number-box').innerText = document.querySelector('.card-number-input').value;
+    }
+
+    document.querySelector('.cvv-input').oninput = () =>{
+        document.querySelector('.card-holder-name').innerText = document.querySelector('.cvv-input').value;
+    }
+
+    document.querySelector('.month-input').oninput = () =>{
+        document.querySelector('.exp-month').innerText = document.querySelector('.month-input').value;
+    }
+
+    document.querySelector('.year-input').oninput = () =>{
+        document.querySelector('.exp-year').innerText = document.querySelector('.year-input').value;
+    }
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

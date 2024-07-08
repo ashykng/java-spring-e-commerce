@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+    <title>order-confirmation</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,900" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/assets/css1/styles.css}" rel="stylesheet">
+    <link th:href="@{/assets/css1/animate.css}" rel="stylesheet">
+    <link th:href="@{/assets/css1/owl-carousel.css}" rel="stylesheet">
+    <link th:href="@{/assets/css1/lightbox.css}" rel="stylesheet">
+</head>
+
+<body>
+<div class="order-inner float-left w-100 mt-4">
+    <div class="container">
+        <div class="row">
+            <div id="order-confirmation" class="card float-left w-100 mb-10">
+                <div class="card-block p-20">
+                    <h3 class="card-title text-success">Your order is confirmed</h3>
+                    <a href="/">Back to home</a>
+                </div>
+            </div>
+
+            <div id="order-items" class="card float-left w-100 mb-10">
+                <div class="card-block p-20">
+                    <h3 class="card-title">order items</h3>
+                    <div class="order-confirmation-table float-left w-100">
+                        <div class="order-line float-left w-100">
+                            <!-- todo order items -->
+                            <div class="row" th:each="order : ${orders}">
+                                <div class="col-sm-1 col-xs-3 float-left">
+                                    <img th:src="@{${order.product.imagePath}}" alt="" width="45px">
+                                </div>
+                                <div class="col-sm-5 col-xs-9 details float-left">
+                                    <span th:text="${order.product.name}"></span>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 qty float-left d-flex">
+                                    <div class="col-xs-5 col-sm-5 text-sm-right text-xs-left" th:text="${order.product.price}+'$'"></div>
+                                    <div class="col-xs-2 col-sm-2" th:text="${order.quantity}"></div>
+                                    <div class="col-xs-5 col-sm-5 text-sm-right bold" th:text="${order.product.price}*${order.quantity} +'$'"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="float-left w-100">
+                        <table class="float-left w-100 mb-30">
+                            <tbody>
+                            <tr class="mb-10">
+                                <td>Subtotal</td>
+                                <td class="text-right" th:text="${totalAmount}+'$'"></td>
+                            </tr>
+                            <tr class="mb-10">
+                                <td>Shipping and handling</td>
+                                <td class="text-right" >3.00$</td>
+                            </tr>
+                            <tr class="font-weight-bold">
+                                <td><span class="text-uppercase">Total</span> </td>
+                                <td class="text-right" th:text="${totalAmount}+3.0 +'$'"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div id="order-details" class="float-left w-100">
+                            <h3 class="h3 card-title">Receiver details:</h3>
+                            <ul>
+                                <li th:text="'Name: ' + ${user.name}"></li>
+                                <li th:text="'Address: ' + ${user.address}"></li>
+                                <li th:text="'Phone number: ' + ${user.number}"></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer section -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/assets/js1/jquery.min.js}"></script>
+<script th:src="@{/assets/js1/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js1/owl.carousel.min.js}"></script>
+<script th:src="@{/assets/js1/custom.js}"></script>
+<script th:src="@{/assets/js1/parallax.js}"></script>
+<script th:src="@{/assets/js1/jquery-ui.min.js}"></script>
+<script th:src="@{/assets/js1/ResizeSensor.min.js}"></script>
+<script th:src="@{/assets/js1/theia-sticky-sidebar.min.js}"></script>
+<script th:src="@{/assets/js1/jquery.countdown.min.js}"></script>
+<script th:src="@{/assets/js1/masonry.pkgd.min.js}"></script>
+<script th:src="@{/assets/js1/imagesloaded.pkgd.min.js}"></script>
+<script th:src="@{/assets/js1/jquery.zoom.min.js}"></script>
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5ac1aabb4b401e45400e4197/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title> داشبورد </title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" th:href="@{/assets/plugins/font-awesome/css/font-awesome.min.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/assets/dist/css/adminlte.min.css}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- bootstrap rtl -->
+  <link rel="stylesheet" th:href="@{/assets/dist/css/bootstrap-rtl.min.css}">
+  <!-- template rtl version -->
+  <link rel="stylesheet" th:href="@{/assets/dist/css/custom-style.css}">
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div>
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img src="data:image/png;base64,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"
+                class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info d-block text-light">
+               <p th:text="${sellerName}"></p>
+            </div>
+          </div>
+
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <!-- Add icons to the links using the .nav-icon class
+                 with font-awesome or any other icon font library -->
+                 <li class="nav-item">
+                  <a th:href="@{/seller}" class="nav-link active">
+                    <i class="nav-icon fa fa-dashboard"></i>
+                    <p>
+                      داشبورد
+                    </p>
+                  </a>
+                </li>
+  
+                <li class="nav-item">
+                  <a th:href="@{/seller/my-products}" class="nav-link">
+                    <i class="nav-icon fa fa-cubes"></i>
+                    <p>
+                      محصولات من
+                    </p>
+                  </a>
+                </li>
+  
+                <li class="nav-item">
+                  <a th:href="@{/seller/add-product}" class="nav-link">
+                    <i class="nav-icon fa fa-cube"></i>
+                    <p>
+                      افزودن کالا
+                      <i class="right fa"></i>
+                    </p>
+                  </a>
+                </li>
+            </ul>
+            <div class="fixed-bottom mx-auto">
+              <a th:href="@{/logout}" ><button class="btn btn-warning btn-md"> <i class="fa fa-sign-out" aria-hidden="true"></i> خروج</button></a>
+            </div>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Info boxes -->
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fa fa-rectangle-list"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">تعداد محصولات فروخته شده</span>
+                  <span class="info-box-number" th:text="${totalCountOfSales}"></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-money-bill-wave"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">مجموع فروش</span>
+                  <span class="info-box-number" th:text="${totalSalesAmount}"></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <!-- fix for small devices only -->
+            <div class="clearfix hidden-md-up"></div>
+
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-success elevation-1"><i class="fa fa-box-open"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">محصولات</span>
+                  <span class="info-box-number" th:text="*{productsCount}"></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+          </div>
+          <!-- /.row -->
+
+
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <div class="col-md-8">
+              <!-- /.card -->
+              <div class="row">
+              </div>
+              <!-- /.row -->
+
+              <!-- TABLE: LATEST ORDERS -->
+              <div class="card">
+                <div class="card-header border-transparent">
+                  <h3 class="card-title">موجودی انبار من </h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table m-0">
+                      <thead>
+                        <tr >
+                          <th>ردیف</th>
+                          <th>محصول</th>
+                          <th>قیمت</th>
+                          <th>باقی مانده</th>
+                          <th>فروخته شده</th>
+                          <th>وضعیت</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr th:each="product, index : ${products}">
+                          <td th:text="${index.index + 1}"></td>
+                          <td th:text="${product.name}"></td>
+                          <td th:text="${product.price}"></td>
+                          <td th:text="${product.inventory}"></td>
+                          <td th:text="${product.stock}-${product.inventory}"></td>
+                          <td>
+                            <span th:if="${product.inventory != 0}" class="badge badge-success">موجود</span>
+                            <span th:if="${product.inventory == 0}" class="badge badge-danger">تمام شده</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.table-responsive -->
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-md-4">
+
+
+              <!-- PRODUCT LIST -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">تازه ترین محصولات من</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <ul class="products-list product-list-in-card pl-2 pr-2">
+                    <li class="item" th:each="product : ${products}">
+                      <div class="product-img">
+                        <img th:src="@{${product.imagePath}}" alt="Product Image" class="img-size-50">
+                      </div>
+                      <div class="product-info">
+                        <a href="javascript:void(0)" class="product-title" th:text="${product.name}">
+                          <span class="badge badge-warning float-left" th:text="${product.price}"></span></a>
+                        <span class="product-description" th:text="${product.category.name}">
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <!-- /.card-body -->
+                <!-- /.card-footer -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div><!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer fixed-bottom">
+      <strong>CopyRight &copy; </strong>
+  </footer>
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- REQUIRED SCRIPTS -->
+  <!-- jQuery -->
+  <script src="@{/assets/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="@{/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="@{/assets/dist/js/adminlte.js"></script>
+
+  <!-- OPTIONAL SCRIPTS -->
+  <script src="@{/assets/dist/js/demo.js"></script>
+
+  <!-- PAGE PLUGINS -->
+  <!-- SparkLine -->
+  <script th:src="@{/assets/plugins/sparkline/jquery.sparkline.min.js}"></script>
+  <!-- jVectorMap -->
+  <script th:src="@{/assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js}"></script>
+  <script src="@{/assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
+  <!-- SlimScroll 1.3.0 -->
+  <script th:src="@{/assets/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+  <!-- ChartJS 1.0.2 -->
+  <script th:src="@{/assets/plugins/chartjs-old/Chart.min.js}"></script>
+
+  <!-- PAGE SCRIPTS -->
+  <script th:src="@{/assets/dist/js/pages/dashboard2.js}"></script>
+</body>
+
+</html>
